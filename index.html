@@ -41,18 +41,15 @@
     // que o navegador dispara — sem isso, ele só apareceria uma vez e sumiria
     // se não fosse tratado. Guardamos em `window.deferredPwaInstallPrompt` pro
     // Dart ler/chamar depois, no bottom sheet de sugestão de instalação (ver
-    // lib/services/pwa_install_service.dart).
-    // O Chrome só dispara esse evento depois de ~30s de engajamento real do
-    // usuário na página (critério de instalabilidade dele) — nunca logo na
-    // abertura do app. Por isso, além de guardar o evento aqui, avisamos o
-    // Dart via um CustomEvent assim que ele chegar, pra mostrar o convite de
-    // instalar na hora certa (ver PwaInstallService.listenForNativePrompt),
-    // em vez de confiar numa checagem pontual que rodaria cedo demais.
+    // lib/services/pwa_install_service.dart). O Chrome só dispara esse evento
+    // depois de ~30s de engajamento real do usuário na página (critério de
+    // instalabilidade dele) — o app não espera isso: mostra o convite assim
+    // que abre, com um diálogo nativo se esse valor já estiver disponível, ou
+    // um passo a passo manual caso contrário (ver PwaInstallSheet).
     window.deferredPwaInstallPrompt = null;
     window.addEventListener('beforeinstallprompt', (event) => {
       event.preventDefault();
       window.deferredPwaInstallPrompt = event;
-      window.dispatchEvent(new CustomEvent('flutter-pwa-installable'));
     });
     window.addEventListener('appinstalled', () => {
       window.deferredPwaInstallPrompt = null;
@@ -70,7 +67,7 @@
     // primeira visita.
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=1410613333') /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */.catch((e) => {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=3649363230') /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */.catch((e) => {
           console.warn('Falha ao registrar o service worker:', e);
         });
       });
