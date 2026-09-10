@@ -50,6 +50,24 @@
     window.addEventListener('appinstalled', () => {
       window.deferredPwaInstallPrompt = null;
     });
+
+    // O loader padrão do Flutter (flutter_bootstrap.js, gerado a cada build)
+    // só chama `serviceWorker.register(...)` quando JÁ existe um registro
+    // anterior — na primeira visita, sem nenhum registro prévio, ele não
+    // registra nada, silenciosamente (comportamento do loader marcado como
+    // deprecated pelo próprio Flutter — ver
+    // https://github.com/flutter/flutter/issues/156910). Sem service worker
+    // ativo, o Chrome nunca considera o site instalável e o
+    // `beforeinstallprompt` acima nunca dispara — por isso registramos aqui
+    // manualmente, sempre, garantindo que exista um service worker desde a
+    // primeira visita.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=381921139') /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */.catch((e) => {
+          console.warn('Falha ao registrar o service worker:', e);
+        });
+      });
+    }
   </script>
 </head>
 <body>
