@@ -11,6 +11,15 @@
     gtag('config', 'AW-11251289654');
   </script>
 
+  <!-- Event snippet for Visualização de página conversion page -->
+  <script>
+    gtag('event', 'conversion', {
+        'send_to': 'AW-11251289654/5MStCOPVsPMcELachPUp',
+        'value': 1.0,
+        'currency': 'BRL'
+    });
+  </script>
+
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -77,7 +86,7 @@
     // primeira visita.
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=3846580712') /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */.catch((e) => {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=3930862662') /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */.catch((e) => {
           console.warn('Falha ao registrar o service worker:', e);
         });
       });
