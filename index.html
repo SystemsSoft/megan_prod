@@ -86,7 +86,7 @@
     // primeira visita.
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=4278380295') /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */.catch((e) => {
+        navigator.serviceWorker.register('flutter_service_worker.js?v=1651024259') /* Flutter's service worker is deprecated and will be removed in a future Flutter release. */.catch((e) => {
           console.warn('Falha ao registrar o service worker:', e);
         });
       });
