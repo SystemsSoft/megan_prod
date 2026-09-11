@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#0A1128",
     "theme_color": "#0A1128",
-    "description": "Sua tutora de idiomas por ligação de voz.",
+    "description": "Aprenda um novo idioma simulando uma conversa em tempo real, como se fosse com um nativo.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
